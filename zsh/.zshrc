@@ -23,8 +23,6 @@ export TERMINAL="kitty"   # Default terminal emulator is Kitty
 export BRAVE_PASSWORD_STORE=gnome  # Use GNOME keyring as the password store for Brave browser
 
 # Aliases
-# Define shortcuts for commonly used commands.
-# Aliases for enhanced directory listing using eza (modern replacement for ls).
 alias lg="eza -l --icons --group-directories-first --color=auto --git"  # Long format with git info
 alias tree="eza -T --icons --group-directories-first --color=auto"      # Tree view
 alias la="eza -a --icons --group-directories-first --color=auto"        # Show all files including hidden
@@ -32,10 +30,10 @@ alias lA="eza -A --icons --group-directories-first --color=auto"        # Show a
 alias ll="eza -lh --icons --group-directories-first --color=auto"       # Long format with human-readable sizes
 alias ls="eza --icons --group-directories-first --color=auto"           # Default listing with icons
 
-alias r="ranger"                                              # File manager shortcut
-alias nano='micro'                                          # Uncomment to replace nano with micro
-alias gce='gh copilot explain'                              # Uncomment for GitHub Copilot explain
-alias gcs='gh copilot suggest'                              # Uncomment for GitHub Copilot suggest
+alias r="ranger"
+alias nano='micro'
+alias gce='gh copilot explain'
+alias gcs='gh copilot suggest'
 
 # Keybindings
 # Customize keybindings for better navigation.
