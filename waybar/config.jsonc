@@ -174,7 +174,7 @@
   "clock": {
     // "timezone": "America/New_York",
     "format": "<span color='#282828' bgcolor='#8ec07c' >  </span> {:%a %d %b %I:%M:%S %p}",
-    "on-click-right": "yad --calendar --no-buttons --mouse --fixed --close-on-unfocus --undecorated --sticky --geometry=300x200+50%+30 --on-top --title='Calendar'",
+    "on-click-right": "gsimplecal",
     "tooltip": false,
     "interval": 1
   },
