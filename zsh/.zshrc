@@ -24,9 +24,15 @@ export BRAVE_PASSWORD_STORE=gnome  # Use GNOME keyring as the password store for
 
 # Aliases
 # Define shortcuts for commonly used commands.
-alias ls="eza --icons --group-directories-first --color=auto"  # Enhanced ls command
+# Aliases for enhanced directory listing using eza (modern replacement for ls).
+alias lg="eza -l --icons --group-directories-first --color=auto --git"  # Long format with git info
+alias tree="eza -T --icons --group-directories-first --color=auto"      # Tree view
+alias la="eza -a --icons --group-directories-first --color=auto"        # Show all files including hidden
+alias lA="eza -A --icons --group-directories-first --color=auto"        # Show all files except . and ..
+alias ll="eza -lh --icons --group-directories-first --color=auto"       # Long format with human-readable sizes
+alias ls="eza --icons --group-directories-first --color=auto"           # Default listing with icons
+
 alias r="ranger"                                              # File manager shortcut
-# alias rm="trash-put"                                        # Uncomment to use trash-put for safer deletions
 alias nano='micro'                                          # Uncomment to replace nano with micro
 alias gce='gh copilot explain'                              # Uncomment for GitHub Copilot explain
 alias gcs='gh copilot suggest'                              # Uncomment for GitHub Copilot suggest
@@ -69,8 +75,10 @@ zinit light zsh-users/zsh-history-substring-search
 # Syntax highlighting
 # zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-syntax-highlighting
+
 # Directory navigation tools
 zinit light mrjohannchang/zsh-interactive-cd
+
 
 # Load Powerlevel10k configuration if it exists.
 # To customize the prompt, run `p10k configure` or edit ~/.p10k.zsh.
