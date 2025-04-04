@@ -94,7 +94,6 @@ zstyle ':autocomplete:*' max-lines 10 # Limit the number of suggestions
 # =========================================================================================
 # Variables
 # =========================================================================================
-
 # Reduce completion delay
 export KEYTIMEOUT=1
 
@@ -103,19 +102,22 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Optimize Zsh history file
-setopt append_history          # Append history to the file, rather than overwriting it
-setopt inc_append_history       # Add commands to history immediately
-setopt share_history            # Share history across all Zsh sessions
-setopt hist_ignore_all_dups     # Remove all duplicate entries in history
-setopt hist_ignore_space        # Ignore commands that start with a space
-setopt hist_reduce_blanks       # Remove extra blanks from commands before saving
-setopt hist_verify              # Verify recalled commands before running
-setopt extended_history         # Save timestamps for each command in history
+setopt append_history         # Append history to the file, rather than overwriting it
+setopt inc_append_history     # Add commands to history immediately
+setopt share_history          # Share history across all Zsh sessions
+setopt hist_ignore_all_dups   # Remove all duplicate entries in history
+setopt hist_ignore_space      # Ignore commands that start with a space
+setopt hist_reduce_blanks     # Remove extra blanks from commands before saving
+setopt hist_verify            # Verify recalled commands before running
+setopt extended_history       # Save timestamps for each command in history
+setopt hist_expire_dups_first # Remove duplicates first when trimming history
+setopt hist_find_no_dups      # Don't display duplicates when searching history
+setopt hist_save_no_dups      # Don't write duplicate entries to history file
 
-export HISTFILE=~/.zsh_history  # File to save command history
-export HISTSIZE=10000           # Number of commands to keep in memory
-export SAVEHIST=10000           # Number of commands to save to the history file
-export HISTCONTROL=ignoredups:erasedups  # Ignore duplicates and erase older duplicates
+# History file configuration
+export HISTFILE=~/.zsh_history
+export HISTSIZE=50000         # Increased from 10000 for more history retention
+export SAVEHIST=50000         # Should match HISTSIZE
 
 # Extract archives
 function extract() {
