@@ -190,7 +190,7 @@
     }
   },
   "custom/rofi": {
-    "format": "<span ></span>",
+    "format": "<span >󰣇</span>",
     "on-click": "/home/r4ppz/.config/rofi/scripts/launcher_t4", // Rofi
     "on-click-right": "/home/r4ppz/.config/rofi/powermenu/type-3/powermenu.sh", // Rofi
     "escape": true,
