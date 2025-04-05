@@ -1,7 +1,9 @@
+# =========================================================================================
+# Source
+# =========================================================================================
 # Enable Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 ### Added by Zinit's installer
 # Install Zinit plugin manager if not already installed.
@@ -12,6 +14,9 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
         print -P "%F{33} %F{34}Installation successful.%f%b" || \
         print -P "%F{160} The clone has failed.%f%b"
 fi
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 # Source Zinit and set up autoloading for its completion function.
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
@@ -33,12 +38,6 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light mrjohannchang/zsh-interactive-cd
 # zinit light marlonrichert/zsh-autocomplete
 zinit light junegunn/fzf
-
-# =========================================================================================
-# Source
-# =========================================================================================
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
 
 # =========================================================================================
 # Path Management
