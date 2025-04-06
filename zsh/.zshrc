@@ -4,6 +4,7 @@
 # Enable Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 ### Added by Zinit's installer
 # Install Zinit plugin manager if not already installed.
@@ -35,9 +36,14 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-syntax-highlighting
-zinit light mrjohannchang/zsh-interactive-cd
-# zinit light marlonrichert/zsh-autocomplete
+# zinit light mrjohannchang/zsh-interactive-cd
+zinit light marlonrichert/zsh-autocomplete
 zinit light junegunn/fzf
+
+zstyle ':autocomplete:*' min-input 2  # Start autocomplete after typing 2 characters
+zstyle ':autocomplete:*' max-lines 10 # Limit the number of suggestions displayed
+zstyle ':autocomplete:*' use-fzf false # Disable fzf integration if not needed
+zstyle ':autocomplete:*' widget-style menu-select # Use a simpler menu style
 
 # =========================================================================================
 # Path Management
@@ -54,8 +60,8 @@ export PATH
 # =========================================================================================
 # Defaults
 # =========================================================================================
-export EDITOR="code"      # Default editor is Visual Studio Code
-export VISUAL="code"      # Default visual editor is Visual Studio Code
+export EDITOR="nvim"      # Default editor
+export VISUAL="nvim"      # Default visual editor
 export TERMINAL="kitty"   # Default terminal emulator is Kitty
 export BRAVE_PASSWORD_STORE=gnome  # Use GNOME keyring as the password store for Brave browser
 
@@ -86,9 +92,6 @@ bindkey '^[[F' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^R' fzf-history-widget
 
-# zsh-autocomplete configuration
-zstyle ':autocomplete:*' min-input 2  # Start autocomplete after 2 characters
-zstyle ':autocomplete:*' max-lines 10 # Limit the number of suggestions
 
 # =========================================================================================
 # Variables
