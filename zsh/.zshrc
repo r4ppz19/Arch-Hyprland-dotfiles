@@ -51,8 +51,8 @@ zstyle ':completion:*' file-patterns '*(-/):directories' '.*(-/):hidden-dirs'
 typeset -U path
 path=(
   $HOME/.local/bin       # Local binaries
-  $HOME/.cargo/bin       # Rust binaries
-  $HOME/.npm-global/bin  # Global npm binaries
+  # $HOME/.cargo/bin       # Rust binaries
+  # $HOME/.npm-global/bin  # Global npm binaries
   ${path[@]}             # Preserve existing PATH entries
 )
 export PATH
