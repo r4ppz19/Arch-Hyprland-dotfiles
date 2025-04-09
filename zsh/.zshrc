@@ -11,6 +11,10 @@ fi
 # Plugin Management (Antidote)
 # =========================================================================================
 
+# Completion System
+autoload -Uz compinit
+compinit
+
 # Load antidote
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 
@@ -35,14 +39,6 @@ source /usr/share/fzf/completion.zsh
 
 # Load Powerlevel10k config
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# =========================================================================================
-# Completion System
-# =========================================================================================
-
-autoload -Uz compinit
-compinit
-zstyle ':completion:*' file-patterns '*(-/):directories' '.*(-/):hidden-dirs'
 
 # =========================================================================================
 # Path Management
@@ -110,6 +106,7 @@ alias r="ranger"
 alias nano='micro'
 alias gce='gh copilot explain'
 alias gcs='gh copilot suggest'
+alias gpt="tgpt"
 
 # =========================================================================================
 # Keybindings
