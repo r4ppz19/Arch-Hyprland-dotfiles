@@ -100,10 +100,9 @@ alias tree="eza -T --icons --group-directories-first --color=auto"      # Tree v
 alias la="eza -a --icons --group-directories-first --color=auto"        # Show all files including hidden
 alias ll="eza -lh --icons --group-directories-first --color=auto"       # Long format with human-readable sizes
 alias ls="eza --icons --group-directories-first --color=auto"           # Default listing with icons
-alias update="sudo pacman -Syu && zinit self-update && zinit update --all"
+alias update="pacman -Syu && yay"
 
 alias r="ranger"
-alias nano='micro'
 alias gce='gh copilot explain'
 alias gcs='gh copilot suggest'
 alias gpt="tgpt"
