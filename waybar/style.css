@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   min-height: 0;
-  border-radius: 0;
+  border-radius: 0px;
   border: none;
   text-shadow: none;
   transition: none;
@@ -12,7 +12,7 @@
 window#waybar {
   color: #ebdbb2;
   /* background: none; */
-  background: #222222;
+  background: #282828;
 }
 
 window#waybar.hidden {
@@ -48,11 +48,11 @@ window#waybar.hidden {
 #mpd,
 #custom-playerctl {
   font-family: JetBrainsMono Nerd Font Propo;
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 800;
-  color: #222222;
-  background: #222222;
-  border: 5px solid #222222;
+  color: #282828;
+  background: #282828;
+  border: 4px solid #282828;
   border-radius: 0px;
 }
 
@@ -74,11 +74,12 @@ window#waybar.hidden {
 #mpd,
 #custom-playerctl {
   padding-right: 4px;
+  padding-left: 2px;
 }
 
 #custom-rofi {
   background: #83a598;
-  padding: 0 7px;
+  min-width: 20px;
 }
 /* ======================================================== */
 /* workspaces module */
@@ -89,8 +90,8 @@ window#waybar.hidden {
 
 #workspaces button {
   color: #ebdbb2;
-  padding: 0 4px;
-  margin: 0px 3px;
+  padding: 0px 0px;
+  margin: 0px 2px;
   min-width: 25px;
 }
 
@@ -222,8 +223,8 @@ window#waybar.hidden {
 /* power-profiles-daemon */
 /* ======================================================== */
 #power-profiles-daemon {
-  padding-left: 2;
-  padding-right: 2;
+  padding-left: 2px;
+  padding-right: 2px;
   color: #d3869b;
 }
 

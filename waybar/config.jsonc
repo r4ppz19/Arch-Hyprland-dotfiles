@@ -1,16 +1,15 @@
 {
   "layer": "top",
-  "height": 27,
+  "height": 21,
   "spacing": 3,
   "margin-top": 0,
   "margin-right": 0,
   "margin-left": 0,
   "modules-left": [
-    "custom/rofi",
+    // "custom/rofi",
     // "sway/workspaces",
     // "sway/window",
     "hyprland/workspaces",
-    "hyprland/active-window",
     "custom/web-links",
     // "mpd",
     "custom/playerctl"
@@ -65,12 +64,6 @@
   // },
 
   "sway/window": {
-    "format": "<span color='#282828' bgcolor='#d3869b' > 󰣆 </span> {app_id}",
-    "separate-outputs": true,
-    "icon": false
-  },
-
-  "hyprland/active-window": {
     "format": "<span color='#282828' bgcolor='#d3869b' > 󰣆 </span> {app_id}",
     "separate-outputs": true,
     "icon": false
