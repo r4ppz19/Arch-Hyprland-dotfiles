@@ -96,7 +96,7 @@ window#waybar.hidden {
 }
 
 #workspaces button:hover {
-  background: #d3869b;
+  background: #83a598;
 }
 
 #workspaces button.visible {

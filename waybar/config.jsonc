@@ -59,6 +59,8 @@
   },
   "cpu": {
     "format": "<span color='#e78a4e' >  </span> {usage}%",
+    "tooltip": true,
+    "tooltip-format": "CPU Usage: {usage}%",
     "interval": 2
   },
   "memory": {
@@ -126,9 +128,12 @@
   },
   "clock": {
     // "timezone": "America/New_York",
-    "format": "<span color='#8ec07c'>  </span> {:%a %d %b %I:%M:%S %p}",
+    "format": "<span color='#8ec07c'>  </span> {:%a %d %b %I:%M:%S %p}",
+    "format-alt": "<span color='#8ec07c'>  </span> {:%Y-%m-%d}",
+    "tooltip": true,
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    // "on-click": "gsimplecal",
     "on-click-right": "gsimplecal",
-    "tooltip": false,
     "interval": 1
   },
   "power-profiles-daemon": {
@@ -174,11 +179,14 @@
     "on-click-middle": "kitty -e ncmpcpp"
   },
   "custom/playerctl": {
-    "exec": "playerctl metadata --format '{{title}}' 2>/dev/null | awk '{if(length($0) > 40) print substr($0,1,20)\"...\"; else print $0}' || echo 'No media playing'",
-    "interval": 2,
+    "format": "<span color='#458588'>󰎆 </span>{}",
+    "return-type": "json",
+    "max-length": 25,
+    "exec": "playerctl metadata --format '{\"text\": \"{{title}}\", \"tooltip\": \"{{artist}} - {{title}}\\n{{album}}\"}' 2>/dev/null || echo '{\"text\": \"No media playing\", \"tooltip\": \"No media playing\"}'",
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl next",
     "on-click-middle": "playerctl previous",
-    "tooltip": false
+    "tooltip": true,
+    "interval": 2
   }
 }
