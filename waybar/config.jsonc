@@ -1,15 +1,13 @@
 {
   "layer": "top",
   "height": 21,
-  "spacing": 3,
+  "spacing": 1,
   "margin-top": 0,
   "margin-right": 0,
   "margin-left": 0,
   "modules-left": [
     "hyprland/workspaces",
-    "custom/web-links",
-    // "mpd",
-    "tray",
+    // "custom/web-links",
     "custom/playerctl",
   ],
   "modules-center": [
@@ -24,6 +22,7 @@
     "backlight",
     "battery",
     // "power-profiles-daemon",
+    "tray",
     "custom/power-button"
   ],
   // Modules configuration
@@ -46,25 +45,27 @@
     },
     "persistent-workspaces": {
       "*": 4,
-    }
+    },
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1"
   },
   
   "tray": {
-    "icon-size": 15,
+    "icon-size": 12,
     "spacing": 8
   },
   "disk": {
-    "format": "<span color='#ea6962' > 󰣆 </span> {free}",
+    "format": "<span color='#928374'> 󰣆 </span> {free}",
     "interval": 20
   },
   "cpu": {
-    "format": "<span color='#e78a4e' >  </span> {usage}%",
+    "format": "<span color='#d79921'>  </span> {usage}%",
     "tooltip": true,
     "tooltip-format": "CPU Usage: {usage}%",
     "interval": 2
   },
   "memory": {
-    "format": "<span color='#b8bb26' >  </span> {used} GiB ({percentage}%)",
+    "format": "<span color='#98971a'>  </span> {used} GiB ({percentage}%)",
     "tooltip": false,
     "interval": 10,
     "on-click-right": "kitty -e btop"
@@ -74,27 +75,54 @@
     "thermal-zone": 6,
     "critical-threshold": 70,
     "interval": 2,
-    "format": "<span color='#d8a657' >  </span> {temperatureC}°C",
+    "format": "<span color='#d79921'>  </span> {temperatureC}°C",
     "format-critical": "<span color='#cc241d'>  </span> {temperatureC}°C"
   },
   "backlight": {
     // "device": "acpi_video1",
-    "format": "<span color='#d8a657'> 󰞏 </span> {percent}%",
-    "tooltip": false
+    "format": "<span color='#d79921'> {icon} </span> {percent}%",
+    "format-icons": [
+      "󰃚", // 0-14%
+      "󰃛", // 15-29%
+      "󰃜", // 30-44%
+      "󰃝", // 45-59%
+      "󰃞", // 60-74%
+      "󰃟", // 75-89%
+      "󰃠"  // 90-100%
+    ],
+    "on-scroll-up": "brightnessctl set +1%",
+    "on-scroll-down": "brightnessctl set 1%-",
+    "smooth-scrolling-threshold": 1,
+    "tooltip": true,
+    "tooltip-format": "Brightness: {percent}%"
   },
   "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
-    "format": "<span color='#83a598'>  </span> {volume}%",
-    "format-muted": "<span color='#ea6962'>  </span> {volume}%",
-    "format-bluetooth": "<span color='#83a598'> 󰂰 </span> {volume}%",
-    "format-bluetooth-muted": "<span color='#ea6962'> 󰂲 </span> {volume}%",
-    "format-source": "{volume}% ",
+    "scroll-step": 1,
+    "format": "{icon} {volume}%",
+    "format-muted": "<span color='#cc241d'>󰝟</span> {volume}%",
+    "format-bluetooth": "<span color='#458588'>󰂰</span> {volume}%",
+    "format-bluetooth-muted": "<span color='#cc241d'>󰂲</span> {volume}%",
+    "format-source": "<span color='#458588'>󰍬</span> {volume}%",
+    "format-source-muted": "<span color='#cc241d'>󰍭</span>",
+    "format-icons": {
+      "headphone": "<span color='#458588'>󰋋</span>",
+      "headset": "<span color='#458588'>󰋎</span>",
+      "phone": "<span color='#458588'>󰏲</span>",
+      "portable": "<span color='#458588'>󰦥</span>",
+      "car": "<span color='#458588'>󰄋</span>",
+      "default": [
+        "<span color='#458588'>󰕿</span>", 
+        "<span color='#458588'>󰖀</span>", 
+        "<span color='#458588'>󰕾</span>"
+      ]
+    },
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "tooltip": false,
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
+    "tooltip": true,
+    "tooltip-format": "{desc} - {volume}%",
     "max-volume": 130
-  },
-  "battery#bat2": {
-    "bat": "BAT2"
   },
   "battery": {
     "interval": 10,
@@ -115,23 +143,23 @@
       "󰂂",
       "󰁹"
     ],
-    "format": "<span color='#689d6a'> {icon} </span> {capacity}%",
+    "format": "<span color='#98971a'> {icon} </span> {capacity}%",
     "format-critical": "<span color='#cc241d'> {icon} </span> {capacity}%!!",
-    "format-warning": "<span color='#e78a4e'> {icon} </span> {capacity}%",
-    "format-full": "<span color='#689d6a'> {icon} </span> {capacity}%",
-    "format-charging": "<span color='#689d6a'> 󰂅 </span> {capacity}%",
-    "format-charging-warning": "<span color='#e78a4e'> 󰢝 </span> {capacity}%",
+    "format-warning": "<span color='#d79921'> {icon} </span> {capacity}%",
+    "format-full": "<span color='#98971a'> {icon} </span> {capacity}%",
+    "format-charging": "<span color='#98971a'> 󰂅 </span> {capacity}%",
+    "format-charging-warning": "<span color='#d79921'> 󰢝 </span> {capacity}%",
     "format-charging-critical": "<span color='#cc241d'> 󰢜 </span> {capacity}%",
-    "format-plugged": "<span color='#689d6a'> 󰂅 </span> {capacity}%",
-    "format-alt": "<span color='#689d6a'> 󱧥 </span> {time}",
+    "format-plugged": "<span color='#98971a'> 󰂅 </span> {capacity}%",
+    "format-alt": "<span color='#98971a'> 󱧥 </span> {time}",
     "tooltip": false
   },
   "clock": {
     // "timezone": "America/New_York",
-    "format": "<span color='#8ec07c'>  </span> {:%a %d %b %I:%M:%S %p}",
-    "format-alt": "<span color='#8ec07c'>  </span> {:%Y-%m-%d}",
+    "format": "<span color='#689d6a'>  </span> {:%a %d %b %I:%M:%S %p}",
+    "format-alt": "<span color='#689d6a'>  </span> {:%Y-%m-%d}",
     "tooltip": true,
-    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
     // "on-click": "gsimplecal",
     "on-click-right": "gsimplecal",
     "interval": 1
@@ -160,29 +188,15 @@
     "tooltip": false
   },
   "custom/web-links": {
-    "format": "<span color='#282828' bgcolor='#83a598' >  </span>",
+    "format": "<span color='#282828' bgcolor='#458588' >  </span>",
     "on-click": "~/.config/rofi/applets/bin/quicklinks.sh",
     "tooltip": false
-  },
-  "mpd": {
-    "format": "<span color='#458588' >  </span> {title}",
-    "state-format": "{state}",
-    "state-icons": {
-      "pause": "",
-      "play": "",
-      "stop": ""
-    },
-    "interval": 5,
-    "tooltip": true,
-    "on-click": "mpc toggle",
-    "on-click-right": "mpc stop",
-    "on-click-middle": "kitty -e ncmpcpp"
   },
   "custom/playerctl": {
     "format": "<span color='#458588'>󰎆 </span>{}",
     "return-type": "json",
     "max-length": 25,
-    "exec": "playerctl metadata --format '{\"text\": \"{{title}}\", \"tooltip\": \"{{artist}} - {{title}}\\n{{album}}\"}' 2>/dev/null || echo '{\"text\": \"No media playing\", \"tooltip\": \"No media playing\"}'",
+    "exec": "playerctl status 2>/dev/null && playerctl metadata --format '{\"text\": \"{{title}}\", \"tooltip\": \"{{artist}} - {{title}}\\n{{album}}\"}' || echo ''",
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl next",
     "on-click-middle": "playerctl previous",
