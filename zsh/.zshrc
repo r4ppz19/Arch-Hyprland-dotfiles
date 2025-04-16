@@ -44,10 +44,10 @@ source /usr/share/fzf/completion.zsh
 # Path Management
 # =========================================================================================
 
-typeset -U path
+typeset -U path  # Ensure unique entries in PATH
 path=(
   $HOME/.local/bin       # Local binaries
-  # $HOME/.cargo/bin       # Rust binaries
+  $HOME/.cargo/bin       # Rust binaries
   $HOME/.npm-global/bin  # Global npm binaries
   ${path[@]}             # Preserve existing PATH entries
 )
