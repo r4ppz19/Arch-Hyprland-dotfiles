@@ -193,14 +193,14 @@
     "tooltip": false
   },
   "custom/playerctl": {
-    "format": "<span color='#458588'>󰎆 </span>{}",
     "return-type": "json",
-    "max-length": 25,
-    "exec": "playerctl status 2>/dev/null && playerctl metadata --format '{\"text\": \"{{title}}\", \"tooltip\": \"{{artist}} - {{title}}\\n{{album}}\"}' || echo ''",
-    "on-click": "playerctl play-pause",
-    "on-click-right": "playerctl next",
-    "on-click-middle": "playerctl previous",
-    "tooltip": true,
+    "max-length": 30, 
+    "exec": "playerctl -a metadata --format '{\"text\": \"{{title}}\", \"tooltip\": \"{{playerName}}: {{artist}} - {{title}}\\n{{album}}\"}' 2>/dev/null || echo ''",
+    "on-click": "playerctl play-pause", 
+    "on-click-right": "playerctl next", 
+    "on-click-middle": "playerctl previous", 
+    "tooltip": true, 
+    "tooltip-format": "<b>{playerName}</b>\nArtist: {artist}\nTitle: {title}\nAlbum: {album}", 
     "interval": 2
   }
 }
