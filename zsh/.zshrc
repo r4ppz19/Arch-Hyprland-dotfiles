@@ -102,7 +102,7 @@ alias ll="eza -lh --icons --group-directories-first --color=auto"       # Long f
 alias ls="eza --icons --group-directories-first --color=auto"           # Default listing with icons
 alias update="pacman -Syu && yay"
 
-alias r="ranger"
+alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"); cd "$LASTDIR"'
 alias gce='gh copilot explain'
 alias gcs='gh copilot suggest'
 alias gpt="tgpt"
