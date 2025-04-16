@@ -1,31 +1,52 @@
-color=282828
-font=monospace
+# Material Dark Gruvbox theme for swaylockeffects (Blue variant)
+
+# Background and basics
+color=1d2021
+font=Roboto
 image=/home/r4ppz/Pictures/Wallpaper/wallpaper1.png
 
-show-failed-attempts
-indicator-idle-visible
-indicator-radius=100
+# Effects
+screenshots
+effect-blur=7x5
+effect-vignette=0.5:0.5
+fade-in=0.2
+clock
+timestr=%H:%M
+datestr=%a, %e of %B
+
+# Indicator settings
+indicator-radius=120
 indicator-thickness=10
+indicator-caps-lock
+indicator-idle-visible
 
-inside-color=282828
-inside-clear-color=282828
-inside-ver-color=282828
-inside-wrong-color=282828
+# Colors - Material Gruvbox Dark (Blue variant)
+inside-color=1d202188
+inside-clear-color=1d202188
+inside-ver-color=1d202188
+inside-wrong-color=1d202188
 
-ring-color=458588
-ring-clear-color=458588
-ring-ver-color=83a598
-ring-wrong-color=cc241d
+ring-color=504945
+ring-clear-color=83a598
+ring-ver-color=458588
+ring-wrong-color=fb4934
 
-key-hl-color=83a598
-separator-color=504945
+line-color=00000000
+line-clear-color=00000000
+line-ver-color=00000000
+line-wrong-color=00000000
 
 text-color=ebdbb2
 text-clear-color=ebdbb2
 text-ver-color=ebdbb2
 text-wrong-color=ebdbb2
-text-caps-lock-color=ebdbb2
+text-caps-lock-color=83a598
 
-bs-hl-color=cc241d
-caps-lock-bs-hl-color=cc241d
-caps-lock-key-hl-color=cc241d
+key-hl-color=83a598
+bs-hl-color=fb4934
+caps-lock-key-hl-color=458588
+caps-lock-bs-hl-color=fb4934
+separator-color=32302f
+
+# Layout settings
+scaling=fill
