@@ -46,10 +46,11 @@ source /usr/share/fzf/completion.zsh
 
 typeset -U path  # Ensure unique entries in PATH
 path=(
-  $HOME/.local/bin       # Local binaries
-  $HOME/.cargo/bin       # Rust binaries
-  $HOME/.npm-global/bin  # Global npm binaries
-  ${path[@]}             # Preserve existing PATH entries
+  $HOME/go/bin/
+  $HOME/.local/bin
+  $HOME/.cargo/bin
+  $HOME/.npm-global/bin
+  ${path[@]}
 )
 export PATH
 
@@ -115,3 +116,34 @@ bindkey -e
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 
+# =========================================================================================
+# function
+# =========================================================================================
+
+# Default tgpt command with markdown rendering and paging
+g() {
+  tgpt "$@" | sed '/[⣾⣽⣻⢿⡿⣟⣯⣷]/d' | mdcat | less -FRX
+}
+
+# Use tgpt with pollinations provider
+gp() {
+  tgpt --provider pollinations "$@" | sed '/[⣾⣽⣻⢿⡿⣟⣯⣷]/d' | mdcat | less -FRX
+}
+poll() {
+  tgpt --provider pollinations "$@"
+}
+
+# Use tgpt with isou provider
+gi() {
+  tgpt --provider isou "$@" | sed '/[⣾⣽⣻⢿⡿⣟⣯⣷]/d' | mdcat | less -FRX
+}
+
+# Use ollama with gemma3 model with markdown rendering
+o() {
+  tgpt --provider ollama --model gemma3 "$@" | sed '/[⣾⣽⣻⢿⡿⣟⣯⣷]/d' | mdcat | less -FRX
+}
+
+# Direct access to gemma3 model without formatting
+gemma() {
+  tgpt --provider ollama --model gemma3 "$@"
+}
