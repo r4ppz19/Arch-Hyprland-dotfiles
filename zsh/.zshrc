@@ -76,10 +76,9 @@ export HISTSIZE=50000         # Increased from 10000 for more history retention
 export SAVEHIST=50000         # Should match HISTSIZE
 
 # =========================================================================================
-# History Configuration
+# Usefull setopt
 # =========================================================================================
 
-# Optimize Zsh history file
 setopt append_history         # Append history to the file, rather than overwriting it
 setopt inc_append_history     # Add commands to history immediately
 setopt share_history          # Share history across all Zsh sessions
@@ -91,22 +90,31 @@ setopt extended_history       # Save timestamps for each command in history
 setopt hist_expire_dups_first # Remove duplicates first when trimming history
 setopt hist_find_no_dups      # Don't display duplicates when searching history
 setopt hist_save_no_dups      # Don't write duplicate entries to history file
-
+setopt notify
 # =========================================================================================
 # Aliases
 # =========================================================================================
-
+# Dependencies: eza, tree, bat, less, ranger, , trash
+# gh (github cli + copilot extension), ollama (model: gemma3), tgpt
+#
 alias lg="eza -l --icons --group-directories-first --color=auto --git"  # Long format with git info
 alias tree="eza -T --icons --group-directories-first --color=auto"      # Tree view
 alias la="eza -a --icons --group-directories-first --color=auto"        # Show all files including hidden
 alias ll="eza -lh --icons --group-directories-first --color=auto"       # Long format with human-readable sizes
 alias ls="eza --icons --group-directories-first --color=auto"           # Default listing with icons
+alias bat="bat --style=plain --paging=always"
 alias update="pacman -Syu && yay"
+alias less="less -FRX"
 
 alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"); cd "$LASTDIR"'
 alias gce='gh copilot explain'
 alias gcs='gh copilot suggest'
 alias gpt="tgpt"
+alias rm="trash"
+
+# AI
+alias gemma3="tgpt --provider ollama --model gemma3"
+alias poll="tgpt --provider pollinations"
 
 # =========================================================================================
 # Keybindings
@@ -119,31 +127,17 @@ bindkey "^[[1;5C" forward-word
 # =========================================================================================
 # function
 # =========================================================================================
-
-# Default tgpt command with markdown rendering and paging
-g() {
-  tgpt "$@" | sed '/[⣾⣽⣻⢿⡿⣟⣯⣷]/d' | mdcat | less -FRX
-}
-
-# Use tgpt with pollinations provider
-gp() {
-  tgpt --provider pollinations "$@" | sed '/[⣾⣽⣻⢿⡿⣟⣯⣷]/d' | mdcat | less -FRX
-}
-poll() {
-  tgpt --provider pollinations "$@"
-}
-
-# Use tgpt with isou provider
-gi() {
-  tgpt --provider isou "$@" | sed '/[⣾⣽⣻⢿⡿⣟⣯⣷]/d' | mdcat | less -FRX
-}
-
-# Use ollama with gemma3 model with markdown rendering
-o() {
-  tgpt --provider ollama --model gemma3 "$@" | sed '/[⣾⣽⣻⢿⡿⣟⣯⣷]/d' | mdcat | less -FRX
-}
-
-# Direct access to gemma3 model without formatting
-gemma() {
-  tgpt --provider ollama --model gemma3 "$@"
+#
+# tgpt with difference parameter
+ai() {
+  case "$1" in
+    -p)
+      shift
+      tgpt -q -w --provider pollinations "$@" ;;
+    -o)
+      shift
+      tgpt -q -w --provider ollama --model gemma3 "$@" ;;
+    *)
+      tgpt -q -w "$@" ;;
+  esac | mdcat | less -FRX
 }
