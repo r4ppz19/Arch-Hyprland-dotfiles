@@ -1,16 +1,25 @@
+// ~/.config/waybar/config.jsonc
+// Waybar configuration file
+// For documentation, see https://github.com/Alexays/Waybar/wiki/Configuration
+
 {
+  // General Waybar configuration
   "layer": "top",
   "height": 21,
   "spacing": 1,
   "margin-top": 0,
   "margin-right": 0,
   "margin-left": 0,
+
+  // Module placement
   "modules-left": [
-    "hyprland/workspaces",
+    "hyprland/workspaces"
     // "custom/web-links",
-    "custom/playerctl"
+    // "custom/playerctl"
   ],
-  "modules-center": ["clock"],
+  "modules-center": [
+    "clock"
+  ],
   "modules-right": [
     "memory",
     "cpu",
@@ -21,9 +30,14 @@
     "battery",
     // "power-profiles-daemon",
     "tray",
-    "custom/power-button",
+    "custom/power-button"
   ],
+
+  // -------------------------------------------------------------------------
   // Modules configuration
+  // -------------------------------------------------------------------------
+
+  // Hyprland Workspaces module
   "hyprland/workspaces": {
     "active-only": false,
     "all-outputs": true,
@@ -39,43 +53,54 @@
       "7": "7",
       "8": "8",
       "9": "9",
-      "10": "10",
+      "10": "10"
     },
     "persistent-workspaces": {
-      "*": 4,
-    },
-    "on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1",
+      "*": 4
+    }
+    // "on-scroll-up": "hyprctl dispatch workspace e+1",
+    // "on-scroll-down": "hyprctl dispatch workspace e-1",
   },
 
+  // System Tray module
   "tray": {
     "icon-size": 12,
-    "spacing": 8,
+    "spacing": 8
   },
+
+  // Disk module (commented out in modules-right)
   "disk": {
     "format": "<span color='#928374'> 󰣆 </span> {free}",
-    "interval": 20,
+    "interval": 20
   },
+
+  // CPU module
   "cpu": {
     "format": "<span color='#d79921'>  </span> {usage}%",
     "tooltip": true,
     "tooltip-format": "CPU Usage: {usage}%",
-    "interval": 2,
+    "interval": 2
   },
+
+  // Memory module
   "memory": {
     "format": "<span color='#98971a'>  </span> {used} GiB ({percentage}%)",
     "tooltip": false,
     "interval": 10,
-    "on-click-right": "kitty -e btop",
+    "on-click-right": "kitty -e btop"
   },
+
+  // Temperature module
   "temperature": {
     "tooltip": false,
     "thermal-zone": 6,
     "critical-threshold": 70,
     "interval": 2,
     "format": "<span color='#d79921'>  </span> {temperatureC}°C",
-    "format-critical": "<span color='#cc241d'>  </span> {temperatureC}°C",
+    "format-critical": "<span color='#cc241d'>  </span> {temperatureC}°C"
   },
+
+  // Backlight module
   "backlight": {
     // "device": "acpi_video1",
     "format": "<span color='#d79921'> {icon} </span> {percent}%",
@@ -92,8 +117,10 @@
     "on-scroll-down": "brightnessctl set 1%-",
     "smooth-scrolling-threshold": 1,
     "tooltip": true,
-    "tooltip-format": "Brightness: {percent}%",
+    "tooltip-format": "Brightness: {percent}%"
   },
+
+  // PulseAudio module
   "pulseaudio": {
     "scroll-step": 1,
     "format": "{icon} {volume}%",
@@ -111,25 +138,38 @@
       "default": [
         "<span color='#458588'>󰕿</span>",
         "<span color='#458588'>󰖀</span>",
-        "<span color='#458588'>󰕾</span>",
-      ],
+        "<span color='#458588'>󰕾</span>"
+      ]
     },
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pavucontrol",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
-    "tooltip": true,
+    "tooltip": false,
     "tooltip-format": "{desc} - {volume}%",
-    "max-volume": 130,
+    "max-volume": 130
   },
+
+  // Battery module
   "battery": {
     "interval": 10,
     "states": {
       "good": 99,
       "warning": 30,
-      "critical": 20,
+      "critical": 20
     },
-    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
     "format": "<span color='#98971a'> {icon} </span> {capacity}%",
     "format-critical": "<span color='#cc241d'> {icon} </span> {capacity}%!!",
     "format-warning": "<span color='#d79921'> {icon} </span> {capacity}%",
@@ -139,8 +179,10 @@
     "format-charging-critical": "<span color='#cc241d'> 󰢜 </span> {capacity}%",
     "format-plugged": "<span color='#98971a'> 󰂅 </span> {capacity}%",
     "format-alt": "<span color='#98971a'> 󱧥 </span> {time}",
-    "tooltip": false,
+    "tooltip": false
   },
+
+  // Clock module
   "clock": {
     // "timezone": "America/New_York",
     "format": "<span color='#689d6a'>  </span> {:%a %d %b %I:%M:%S %p}",
@@ -149,8 +191,10 @@
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     // "on-click": "gsimplecal",
     "on-click-right": "gsimplecal",
-    "interval": 1,
+    "interval": 1
   },
+
+  // Power Profiles Daemon module (commented out in modules-right)
   "power-profiles-daemon": {
     "format": "{icon}",
     "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
@@ -159,26 +203,34 @@
       "default": "",
       "performance": "",
       "balanced": "",
-      "power-saver": "",
-    },
+      "power-saver": ""
+    }
   },
+
+  // Custom Rofi launcher module (not used in modules lists)
   "custom/rofi": {
     "format": "<span >󰣇</span>",
     "on-click": "/home/r4ppz/.config/rofi/scripts/launcher_t4", // Rofi
     "on-click-right": "/home/r4ppz/.config/rofi/powermenu/type-3/powermenu.sh", // Rofi
     "escape": true,
-    "tooltip": false,
+    "tooltip": false
   },
+
+  // Custom Power Button module
   "custom/power-button": {
     "format": "<span color='#282828' bgcolor='#cc241d' >  </span>",
     "on-click": "/home/r4ppz/.config/rofi/powermenu/type-3/powermenu.sh", // Rofi
-    "tooltip": false,
+    "tooltip": false
   },
+
+  // Custom Web Links module (commented out in modules-left)
   "custom/web-links": {
     "format": "<span color='#282828' bgcolor='#458588' >  </span>",
     "on-click": "~/.config/rofi/applets/bin/quicklinks.sh",
-    "tooltip": false,
+    "tooltip": false
   },
+
+  // Custom Playerctl module (commented out in modules-left)
   "custom/playerctl": {
     "return-type": "json",
     "max-length": 30,
