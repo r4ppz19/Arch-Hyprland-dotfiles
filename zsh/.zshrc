@@ -103,7 +103,7 @@ alias la="eza -a --icons --group-directories-first --color=auto"        # Show a
 alias ll="eza -lh --icons --group-directories-first --color=auto"       # Long format with human-readable sizes
 alias ls="eza --icons --group-directories-first --color=auto"           # Default listing with icons
 alias bat="bat --style=plain --paging=always"
-alias update="pacman -Syu && yay"
+alias update="sudo pacman -Syu && yay"
 alias less="less -FRX"
 
 alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"); cd "$LASTDIR"'
