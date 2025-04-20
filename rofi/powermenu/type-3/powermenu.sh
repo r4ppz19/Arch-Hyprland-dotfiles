@@ -69,7 +69,7 @@ chosen="$(run_rofi)"
 case "$chosen" in
     "$shutdown") run_cmd --shutdown ;;
     "$reboot") run_cmd --reboot ;;
-	"$lock") swaylock ;;
+	"$lock") sleep 0.5 && swaylock ;;
     "$suspend") run_cmd --suspend ;;
     "$logout") run_cmd --logout ;;
 esac
