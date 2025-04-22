@@ -270,7 +270,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 0
+    corner_radius = 1
 
     # Define which corners to round when drawing the window. If the corner radius
     # is set to 0 this option will be ignored.
@@ -342,7 +342,7 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#282828"  # Gruvbox dark background
     foreground = "#83a598"  # Gruvbox blue-gray
-    timeout = 2
+    timeout = 1
     # Icon for notifications with low urgency
     default_icon = dialog-information
 
@@ -350,7 +350,7 @@
     background = "#3c3836"  # Gruvbox medium background
     foreground = "#d5c4a1"  # Gruvbox light text
     frame_color = "#458588"  # Gruvbox blue
-    timeout = 5
+    timeout = 3
     override_pause_level = 30
     # Icon for notifications with normal urgency
     default_icon = dialog-information
