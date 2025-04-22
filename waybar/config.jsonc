@@ -6,7 +6,7 @@
   // General Waybar configuration
   "layer": "top",
   "height": 21,
-  "spacing": 1,
+  "spacing": 0,
   "margin-top": 0,
   "margin-right": 0,
   "margin-left": 0,
@@ -29,8 +29,8 @@
     "backlight",
     "battery",
     // "power-profiles-daemon",
-    "tray",
-    "custom/power-button"
+    "tray"
+    // "custom/power-button"
   ],
 
   // -------------------------------------------------------------------------
