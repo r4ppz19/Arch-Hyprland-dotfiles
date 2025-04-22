@@ -57,7 +57,7 @@ run_cmd() {
 				amixer set Master mute
 				systemctl suspend
 				;;
-			'--logout') hyprctl dispatch exit ;;  # Logout from Hyprland
+			'--logout') loginctl terminate-user $USER ;;
 		esac
 	else
 		exit 0
