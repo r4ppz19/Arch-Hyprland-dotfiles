@@ -21,8 +21,8 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       500px;
-    border-radius:               20px;
+    width:                       400px;
+    border-radius:               10px;
     cursor:                      "default";
     background-color:            @background;
 }
