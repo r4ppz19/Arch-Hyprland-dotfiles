@@ -7,3 +7,4 @@ local o = vim.o
 
 o.wrap = false
 o.relativenumber = true
+o.scrolloff = 4

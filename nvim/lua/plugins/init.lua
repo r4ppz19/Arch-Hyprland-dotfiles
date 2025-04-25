@@ -40,7 +40,7 @@ return {
     },
     config = function()
       require("CopilotChat").setup({
-        model = 'o4-mini',
+        model = 'claude-3.7-sonnet-thought',
         agent = 'copilot',
         -- Optional configuration for CopilotChat
       })
@@ -55,4 +55,26 @@ return {
       require('fzf-lua').register_ui_select()
     end,
   },
+
+  {
+    "3rd/image.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("image").setup()
+    end,
+  },
+
+  {
+    "basola21/PDFview",
+    lazy = false,
+    dependencies = { "nvim-telescope/telescope.nvim" },
+  },
+
+  {
+  'echasnovski/mini.animate',
+  version = false, -- always use the latest version
+  config = function()
+    require('mini.animate').setup()
+  end,
+  }
 }
