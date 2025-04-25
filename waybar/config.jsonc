@@ -29,8 +29,8 @@
     "backlight",
     "battery",
     // "power-profiles-daemon",
-    "tray"
-    // "custom/power-button"
+    "tray",
+    "custom/power-button"
   ],
 
   // -------------------------------------------------------------------------
@@ -116,7 +116,7 @@
     "on-scroll-up": "brightnessctl set +1%",
     "on-scroll-down": "brightnessctl set 1%-",
     "smooth-scrolling-threshold": 1,
-    "tooltip": true,
+    "tooltip": false,
     "tooltip-format": "Brightness: {percent}%"
   },
 
