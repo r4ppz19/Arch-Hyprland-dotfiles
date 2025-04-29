@@ -97,38 +97,38 @@ setopt notify
 # Dependencies: eza, tree, bat, less, ranger, , trash
 # gh (github cli + copilot extension), ollama (model: gemma3), tgpt
 #
+alias ls="eza --icons --group-directories-first --color=auto"           # Default listing with icons
 alias lg="eza -l --icons --group-directories-first --color=auto --git"  # Long format with git info
-alias tree="eza -T --icons --group-directories-first --color=auto"      # Tree view
 alias la="eza -a --icons --group-directories-first --color=auto"        # Show all files including hidden
 alias ll="eza -lh --icons --group-directories-first --color=auto"       # Long format with human-readable sizes
-alias ls="eza --icons --group-directories-first --color=auto"           # Default listing with icons
+alias tree="eza -T --icons --group-directories-first --color=auto"      # Tree view
 alias bat="bat --style=plain --paging=always"
 alias update="sudo pacman -Syu && yay"
 alias less="less -FRX"
-
 alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"); cd "$LASTDIR"'
-alias gce='gh copilot explain'
-alias gcs='gh copilot suggest'
-alias gpt="tgpt"
 alias rm="trash"
+alias icat="kitty +kitten icat --place 100x100@2x2"
+alias compress='tar -czvf'
 
 # AI
+alias gpt="tgpt"
+alias gce='gh copilot explain'
+alias gcs='gh copilot suggest'
 alias gemma3="tgpt --provider ollama --model gemma3"
 alias poll="tgpt --provider pollinations"
+
+# script aliases
+alias shizukuup="~/Arch-dotfiles/scripts/start_shizuku.sh"
 
 # =========================================================================================
 # Keybindings
 # =========================================================================================
 
-bindkey -e
-bindkey "^[[1;5D" backward-word
-bindkey "^[[1;5C" forward-word
-
 # =========================================================================================
 # function
 # =========================================================================================
 #
-# tgpt with difference parameter
+# tgpt with different parameter
 ai() {
   case "$1" in
     -p)
