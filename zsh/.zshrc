@@ -19,11 +19,11 @@ compinit
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 
 # Load plugins from the plugin list
-antidote load ~/.zsh_plugins.txt
+antidote load ~/Arch-dotfiles/zsh/.zsh_plugins.txt
 
 # Optional: static bundle for faster startup
-antidote bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.zsh
-source ~/.zsh_plugins.zsh
+antidote bundle < ~/Arch-dotfiles/zsh/.zsh_plugins.txt > ~/Arch-dotfiles/zsh/.zsh_plugins.zsh
+source ~/Arch-dotfiles/zsh/.zsh_plugins.zsh
 
 # =========================================================================================
 # FZF Configuration
@@ -46,8 +46,8 @@ source /usr/share/fzf/completion.zsh
 
 typeset -U path  # Ensure unique entries in PATH
 path=(
-  $HOME/go/bin/
   $HOME/.local/bin
+  $HOME/go/bin/
   $HOME/.cargo/bin
   $HOME/.npm-global/bin
   ${path[@]}
@@ -57,6 +57,9 @@ export PATH
 # =========================================================================================
 # Environment Variables
 # =========================================================================================
+
+export QT_QPA_PLATFORMTHEME=qt6ct   # For Qt6 apps
+export QT_QPA_PLATFORMTHEME=qt5ct   # For Qt5 apps
 
 export EDITOR="nvim"      # Default editor
 export VISUAL="nvim"      # Default visual editor
@@ -75,9 +78,18 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=50000         # Increased from 10000 for more history retention
 export SAVEHIST=50000         # Should match HISTSIZE
 
+# nnn
+export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'
+export NNN_TMPFILE='/tmp/.lastd' 
+export NNN_FCOLORS="a088429691af6ccb84d68e6d"
+export NNN_COLORS="#2828283c504a"
+export NNN_OPTS="ec" # opener
+
 # =========================================================================================
 # Usefull setopt
 # =========================================================================================
+
+export HIST_IGNORE_PATTERN='*"*'  # Ignore commands with double quotes
 
 setopt append_history         # Append history to the file, rather than overwriting it
 setopt inc_append_history     # Add commands to history immediately
@@ -109,6 +121,7 @@ alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"
 alias rm="trash"
 alias icat="kitty +kitten icat --place 100x100@2x2"
 alias compress='tar -czvf'
+alias n='nnn'
 
 # AI
 alias gpt="tgpt"
