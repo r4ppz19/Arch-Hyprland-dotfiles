@@ -29,8 +29,8 @@
     "backlight",
     "battery",
     // "power-profiles-daemon",
-    "tray",
-    "custom/power-button"
+    "tray"
+    // "custom/power-button"
   ],
 
   // -------------------------------------------------------------------------
@@ -70,13 +70,13 @@
 
   // Disk module (commented out in modules-right)
   "disk": {
-    "format": "<span color='#928374'> 󰣆 </span> {free}",
+    "format": " 󰣆  {free}",
     "interval": 20
   },
 
   // CPU module
   "cpu": {
-    "format": "<span color='#d79921'>  </span> {usage}%",
+    "format": "   {usage}%",
     "tooltip": true,
     "tooltip-format": "CPU Usage: {usage}%",
     "interval": 2
@@ -84,7 +84,7 @@
 
   // Memory module
   "memory": {
-    "format": "<span color='#98971a'>  </span> {used} GiB ({percentage}%)",
+    "format": "   {used} GiB ({percentage}%)",
     "tooltip": false,
     "interval": 10,
     "on-click-right": "kitty -e btop"
@@ -103,7 +103,7 @@
   // Backlight module
   "backlight": {
     // "device": "acpi_video1",
-    "format": "<span color='#d79921'> {icon} </span> {percent}%",
+    "format": " {icon}  {percent}%",
     "format-icons": [
       "󰃚", // 0-14%
       "󰃛", // 15-29%
@@ -209,7 +209,7 @@
 
   // Custom Rofi launcher module (not used in modules lists)
   "custom/rofi": {
-    "format": "<span >󰣇</span>",
+    "format": "󰣇",
     "on-click": "/home/r4ppz/.config/rofi/scripts/launcher_t4", // Rofi
     "on-click-right": "/home/r4ppz/.config/rofi/powermenu/type-3/powermenu.sh", // Rofi
     "escape": true,
@@ -218,14 +218,14 @@
 
   // Custom Power Button module
   "custom/power-button": {
-    "format": "<span color='#282828' bgcolor='#cc241d' >  </span>",
+    "format": "  ",
     "on-click": "/home/r4ppz/.config/rofi/powermenu/type-3/powermenu.sh", // Rofi
     "tooltip": false
   },
 
   // Custom Web Links module (commented out in modules-left)
   "custom/web-links": {
-    "format": "<span color='#282828' bgcolor='#458588' >  </span>",
+    "format": "  ",
     "on-click": "~/.config/rofi/applets/bin/quicklinks.sh",
     "tooltip": false
   },
