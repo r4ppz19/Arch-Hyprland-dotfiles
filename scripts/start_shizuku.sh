@@ -4,7 +4,7 @@
 # CONFIG SECTION
 # -----------------------
 
-PHONE_IP="192.168.1.1"  # Change to your device's IP
+PHONE_IP="192.168.1.5"  # Change to your device's IP
 PORT="5555"              # Default ADB port
 SHIZUKU_START_SCRIPT="/sdcard/Android/data/moe.shizuku.privileged.api/start.sh"
 ADB_BIN="$(which adb)"   # Absolute path to ADB
