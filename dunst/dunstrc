@@ -347,7 +347,7 @@
     default_icon = dialog-information
 
 [urgency_normal]
-    background = "#3c3836"  # Gruvbox medium background
+    background = "#282828"  # Gruvbox medium background
     foreground = "#d5c4a1"  # Gruvbox light text
     frame_color = "#458588"  # Gruvbox blue
     timeout = 2
