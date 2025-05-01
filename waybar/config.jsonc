@@ -96,8 +96,8 @@
     "thermal-zone": 6,
     "critical-threshold": 70,
     "interval": 2,
-    "format": "<span color='#d79921'>  </span> {temperatureC}°C",
-    "format-critical": "<span color='#cc241d'>  </span> {temperatureC}°C"
+    "format": "   {temperatureC}°C",
+    "format-critical": "   {temperatureC}°C"
   },
 
   // Backlight module
