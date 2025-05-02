@@ -1,4 +1,49 @@
 # =========================================================================================
+# Fast TMUX Session Manager (Top of .zshrc)
+# =========================================================================================
+
+if [[ -z "$TMUX" ]] && [[ $- == *i* ]] && command -v tmux &>/dev/null; then
+  # Get existing sessions
+  local sessions=(${(f)"$(tmux list-sessions -F '#{session_name}' 2>/dev/null)"})
+  local session_count=${#sessions}
+  local choice
+
+  # Quick-attach first session on Enter
+  if (( session_count > 0 )); then
+    echo "\n\033[1;34mTMUX Sessions:\033[0m"
+    tmux list-sessions
+    echo "\n\033[1;36mPress Enter to attach \033[1;33m${sessions[1]}\033[0m"
+    echo "Or enter:"
+    echo "  [number] - Attach specific session"
+    echo "  n - New session"
+    echo "  q - Quit"
+    read "choice?Choice (${sessions[1]}/n/q): "
+    
+    case "$choice" in
+      ""|1) tmux attach -t "${sessions[1]}" 2>/dev/null ;;
+      [2-9]) 
+        if (( choice <= session_count )); then
+          tmux attach -t "${sessions[choice]}" 2>/dev/null
+        fi ;;
+      n|N)
+        read "session_name?Session name (default=main): "
+        tmux new-session -s "${session_name:-main}" 2>/dev/null ;;
+      q|Q) : ;;  # Do nothing
+      *) echo "\033[31mInvalid choice!\033[0m" ;;
+    esac
+  else
+    echo "\n\033[1;34mNo existing TMUX sessions\033[0m"
+    read "choice?Create new? [Y/n]: "
+    case "$choice" in
+      n|N) : ;;  # Do nothing
+      *) 
+        read "session_name?Session name (default=main): "
+        tmux new-session -s "${session_name:-main}" 2>/dev/null ;;
+    esac
+  fi
+fi
+
+# =========================================================================================
 # Instant Prompt (Powerlevel10k)
 # =========================================================================================
 
@@ -15,17 +60,6 @@ fi
 autoload -Uz compinit
 compinit
 
-# Add after compinit
-zstyle ':completion:*' menu select
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # Case-insensitive completion
-zstyle ':completion:*' group-order \
-    expansions aliases functions builtins commands # Group results by category
-zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f' # Show descriptions for ambiguous completions
-zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
-
 # Load antidote from its installation directory
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 
@@ -35,17 +69,14 @@ if [[ ! -f ~/Arch-dotfiles/zsh/.zsh_plugins.zsh ]]; then
 fi
 source ~/Arch-dotfiles/zsh/.zsh_plugins.zsh
 
+
 # =========================================================================================
-# FZF Configuration
+# load configuration
 # =========================================================================================
 
 # FZF keybindings (keep this!)
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-
-# =========================================================================================
-# Powerlevel10k Configuration
-# =========================================================================================
 
 # Load Powerlevel10k config
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -66,7 +97,10 @@ export PATH
 # =========================================================================================
 # Environment Variables
 # =========================================================================================
+# wut variable
+export OLLAMA_API_BASE=http://127.0.0.1:11434
 
+# qt theme
 export QT_QPA_PLATFORMTHEME=qt6ct   # For Qt6 apps
 
 export EDITOR="nvim"      # Default editor
@@ -76,10 +110,6 @@ export BRAVE_PASSWORD_STORE=gnome  # Use GNOME keyring as the password store for
 
 # Reduce completion delay
 export KEYTIMEOUT=1
-
-# Enable colored output for `ls` and other commands
-# export CLICOLOR=1
-# export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # History file configuration
 export HISTFILE=~/.zsh_history
@@ -95,11 +125,9 @@ export NNN_COLORS="#2828283c504a"
 export NNN_OPTS="ec" # opener
 
 # fzf
-# Use fd for CTRL-T and ALT-C
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND='fd --type d --hidden'
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always {}' --height 50%"
 export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --margin=0 --padding=0'
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap"
@@ -152,6 +180,11 @@ alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"
 alias n='nnn'
 alias v="nvim"
 
+# tmux
+alias txd='tmux detach'
+alias txls='tmux ls'
+alias txa='tmux attach'
+
 # package management
 alias install='sudo pacman -S'
 alias aurinstall='yay -S'
@@ -184,6 +217,7 @@ bindkey '^[[1;5C' forward-word     # Ctrl+→
 # =========================================================================================
 # functions
 # =========================================================================================
+
 
 # tgpt with different parameter
 ai() {
