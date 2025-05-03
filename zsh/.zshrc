@@ -179,6 +179,7 @@ alias icat="kitty +kitten icat --place 100x100@2x2"
 alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"); cd "$LASTDIR"'
 alias n='nnn'
 alias v="nvim"
+alias cal='qalc'
 
 # tmux
 alias txd='tmux detach'
