@@ -1,11 +1,20 @@
-# Arch + Hyprland dotfiles
-This is very personal config so if you're planning on copying this, maybe just use this as a reference
+# Rice Info
 
+- **WM**: Hyprland
+- **OS**: Arch Linux
+- **Terminal**: Kitty
+- **Shell**: Zsh
+- **Font**: JetBrainsMono Nerd Font
+- **Theme**: Gruvbox-Material-Dark
+- **Icons**: Gruvbox Plus Dark
+- **Bar**: Waybar
+- **Launcher**: Rofi
+- **File Manager**: Thunar
 
 desktop:
 ![alt text](screenshot/screenshot_2025-05-04_10-32-37.png)
 
-browser (firefox): 
+browser (firefox):
 ![alt text](screenshot/screenshot_2025-05-04_10-28-58.png)
 
 terminal (running inside kitty + tmux):
