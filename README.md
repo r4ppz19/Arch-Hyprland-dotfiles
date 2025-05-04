@@ -1,9 +1,36 @@
 # Arch + Hyprland dotfiles
+This is very personal config so if you're planning on copying this, maybe just use this as a reference
 
-![alt text](screenshot/screenshot_2025-04-16_10-45-11.png)
 
-![alt text](screenshot/screenshot_2025-04-16_10-43-53.png)
+desktop:
+![alt text](screenshot/screenshot_2025-05-04_10-32-37.png)
 
-![alt text](screenshot/screenshot_2025-04-16_10-44-58.png)
+browser (firefox): 
+![alt text](screenshot/screenshot_2025-05-04_10-28-58.png)
 
-![alt text](screenshot/screenshot_2025-04-16_10-44-20.png)
+terminal (running inside kitty + tmux):
+![alt text](screenshot/screenshot_2025-05-04_10-31-13.png)
+
+neovim :
+![alt text](screenshot/screenshot_2025-05-04_10-29-44.png)
+
+neofetch, fastfetch:
+![alt text](screenshot/screenshot_2025-05-04_10-42-00.png)
+
+btop:
+![alt text](screenshot/screenshot_2025-05-04_10-31-32.png)
+
+vscode:
+![alt text](screenshot/screenshot_2025-05-04_10-33-35.png)
+
+file manager (thunar):
+![alt text](screenshot/screenshot_2025-05-04_10-31-42.png)
+
+application launcher (rofi):
+![alt text](screenshot/screenshot_2025-05-04_10-32-59.png)
+
+powermenu (rofi):
+![alt text](screenshot/screenshot_2025-05-04_10-33-06.png)
+
+qt apps (kvantum, okular):
+![alt text](screenshot/screenshot_2025-05-04_10-32-05.png)
