@@ -8,6 +8,56 @@
 # This prevents issues when running non-interactive scripts that start with zsh.
 if [[ $- == *i* ]]; then
 
+  # =================================================================
+  # TMUX Session Manager
+  # =================================================================
+
+  if [[ -z "$TMUX" ]] && [[ $- == *i* ]] && command -v tmux &>/dev/null; then
+    # Color definitions
+    local red="\033[31m" green="\033[32m" yellow="\033[33m" reset="\033[0m"
+    
+    # Get existing sessions
+    local sessions=(${(f)"$(tmux list-sessions -F '#{session_name}' 2>/dev/null)"})
+    local session_count=${#sessions}
+    local choice
+
+    if (( session_count > 0 )); then
+      echo "${green}\nTMUX Sessions:${reset}"
+      tmux list-sessions
+      echo "${yellow}\nPress Enter to attach ${sessions[1]}"
+      echo "Options: [number] | n(new) | q(quit)${reset}"
+
+      read -t 30 "choice?Choice (${sessions[1]}/n/q): "
+      
+      case "$choice" in
+        ""|1) 
+          tmux attach -t "${sessions[1]}" || echo "${red}Attach failed!${reset}" ;;
+        [2-9])
+          if (( choice <= session_count )); then
+            tmux attach -t "${sessions[choice]}" || echo "${red}Invalid session!${reset}"
+          else
+            echo "${red}No session $choice${reset}"
+          fi ;;
+        n|N)
+          read "session_name?Session name (default=main): "
+          session_name="${session_name//[^a-zA-Z0-9_]/_}"
+          tmux new-session -A -s "${session_name:-main}" ;;
+        q|Q) : ;;
+        *) echo "${red}Invalid choice!${reset}" ;;
+      esac
+    else
+      echo "${yellow}No existing sessions${reset}"
+      read "choice?Create new? [Y/n]: "
+      case "$choice" in
+        n|N) : ;;
+        *)
+          read "session_name?Session name (default=main): "
+          session_name="${session_name//[^a-zA-Z0-9_]/_}"
+          tmux new-session -A -s "${session_name:-main}" ;;
+      esac
+    fi
+  fi
+
   # Instant Prompt (Powerlevel10k) - Load extremely early for perceived speed
   # =========================================================================
   # Load Powerlevel10k instant prompt cache. Keep this near the top!
@@ -69,9 +119,6 @@ if [[ $- == *i* ]]; then
     source "$zsh_config_dir/path.zsh"         || echo "Error sourcing $zsh_config_dir/path.zsh"
     source "$zsh_config_dir/env_vars.zsh"     || echo "Error sourcing $zsh_config_dir/env_vars.zsh"
     source "$zsh_config_dir/setopt.zsh"       || echo "Error sourcing $zsh_config_dir/setopt.zsh"
-    # The tmux manager is an interactive script that runs early. Source it after
-    # basic env/options are set, but before defining potentially used aliases/funcs.
-    source "$zsh_config_dir/tmux_manager.zsh" || echo "Error sourcing $zsh_config_dir/tmux_manager.zsh"
     # Aliases and functions define commands. Source them after environment is ready.
     source "$zsh_config_dir/aliases.zsh"      || echo "Error sourcing $zsh_config_dir/aliases.zsh"
     source "$zsh_config_dir/functions.zsh"    || echo "Error sourcing $zsh_config_dir/functions.zsh"

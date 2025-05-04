@@ -2,7 +2,7 @@
 # Environment Variables
 # =========================================================================================
 # wut variable
-export OLLAMA_API_BASE=http://127.0.0.1:11434
+export OLLAMA_MODEL="gemma3:latest"
 
 export EDITOR="nvim"      # Default editor
 export VISUAL="nvim"      # Default visual editor
