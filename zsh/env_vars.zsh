@@ -4,9 +4,6 @@
 # wut variable
 export OLLAMA_API_BASE=http://127.0.0.1:11434
 
-# qt theme
-export QT_QPA_PLATFORMTHEME=qt6ct   # For Qt6 apps
-
 export EDITOR="nvim"      # Default editor
 export VISUAL="nvim"      # Default visual editor
 export TERMINAL="kitty"   # Default terminal emulator is Kitty

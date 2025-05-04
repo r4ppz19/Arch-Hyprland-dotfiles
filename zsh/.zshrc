@@ -36,8 +36,8 @@ if [[ $- == *i* ]]; then
   local dotfiles_zsh_dir="${ZDOTDIR:-$HOME}/Arch-dotfiles/zsh"
 
   # Path to plugin list and generated file.
-  local plugins_txt_path="$dotfiles_zsh_dir/.zsh_plugins.txt"
-  local plugins_zsh_path="$dotfiles_zsh_dir/.zsh_plugins.zsh"
+  local plugins_txt_path="$dotfiles_zsh_dir/zsh_plugins.txt"
+  local plugins_zsh_path="$dotfiles_zsh_dir/zsh_plugins.zsh"
 
   if [[ ! -f "$plugins_zsh_path" ]]; then
     echo "Generating $plugins_zsh_path..."

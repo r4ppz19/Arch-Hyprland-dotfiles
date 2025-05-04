@@ -33,7 +33,6 @@ alias txa='tmux attach'
 
 # package management
 alias install='sudo pacman -S'
-alias aurinstall='yay -S'
 alias uninstall='sudo pacman -Rns'
 alias update="sudo pacman -Syu && yay"
 alias search='pacman -Ss && yay -Ss'
@@ -48,5 +47,3 @@ alias poll="tgpt --provider pollinations"
 
 # script aliases
 alias shizukuup="~/Arch-dotfiles/scripts/start_shizuku.sh"
-
-
