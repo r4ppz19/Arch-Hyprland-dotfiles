@@ -71,10 +71,26 @@ return {
   },
 
   {
-  'echasnovski/mini.animate',
-  version = false, -- always use the latest version
-  config = function()
-    require('mini.animate').setup()
-  end,
+    'echasnovski/mini.animate',
+    version = false, -- always use the latest version
+    config = function()
+      require('mini.animate').setup()
+    end,
+  },
+
+  {
+    "kdheepak/lazygit.nvim",
+    lazy = true,
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "Open LazyGit" }
+    },
   }
 }

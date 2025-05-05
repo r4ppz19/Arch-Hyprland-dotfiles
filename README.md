@@ -17,7 +17,7 @@ desktop:
 browser (firefox):
 ![alt text](screenshot/screenshot_2025-05-04_10-28-58.png)
 
-terminal (running inside kitty + tmux):
+terminal (kitty + tmux):
 ![alt text](screenshot/screenshot_2025-05-04_10-31-13.png)
 
 neovim :
