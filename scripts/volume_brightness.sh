@@ -3,32 +3,42 @@
 case "$1" in
     volume-up)
         wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
-        notify-send -r 999 "Volume" "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100) "%"}')" -i audio-volume-high
+        vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%.0f%%", $2 * 100}')
+        notify-send -h string:x-canonical-private-synchronous:volume \
+                    "Volume" "$vol" -i audio-volume-high-symbolic
         ;;
     volume-down)
         wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-        notify-send -r 999 "Volume" "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100) "%"}')" -i audio-volume-low
+        vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%.0f%%", $2 * 100}')
+        notify-send -h string:x-canonical-private-synchronous:volume \
+                    "Volume" "$vol" -i audio-volume-low-symbolic
         ;;
     mute)
         wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-        notify-send -r 999 "Audio" "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{if ($3 == "[MUTED]") print "Muted"; else print "Unmuted"}')" -i audio-volume-muted
+        state=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{if ($3 == "[MUTED]") print "Muted"; else print "Unmuted"}')
+        notify-send -h string:x-canonical-private-synchronous:audio \
+                    "Audio" "$state" -i audio-volume-muted-symbolic
         ;;
     mic-mute)
         wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-        notify-send -r 998 "Mic" "$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{if ($3 == "[MUTED]") print "Muted"; else print "Unmuted"}')" -i microphone-sensitivity-muted
+        state=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{if ($3 == "[MUTED]") print "Muted"; else print "Unmuted"}')
+        notify-send -h string:x-canonical-private-synchronous:mic \
+                    "Microphone" "$state" -i microphone-off-symbolic
         ;;
     brightness-up)
         brightnessctl set 5%+
         current=$(brightnessctl get)
         max=$(brightnessctl max)
-        percentage=$((current * 100 / max))
-        notify-send -r 997 "Brightness" "${percentage}%" -i display-brightness-high
+        percentage=$(awk -v c="$current" -v m="$max" 'BEGIN {printf "%.0f", (c / m) * 100}')
+        notify-send -h string:x-canonical-private-synchronous:brightness \
+                    "Brightness" "${percentage}%" -i display-brightness-high-symbolic
         ;;
     brightness-down)
         brightnessctl set 5%-
         current=$(brightnessctl get)
         max=$(brightnessctl max)
-        percentage=$((current * 100 / max))
-        notify-send -r 997 "Brightness" "${percentage}%" -i display-brightness-low
+        percentage=$(awk -v c="$current" -v m="$max" 'BEGIN {printf "%.0f", (c / m) * 100}')
+        notify-send -h string:x-canonical-private-synchronous:brightness \
+                    "Brightness" "${percentage}%" -i display-brightness-low-symbolic
         ;;
 esac
