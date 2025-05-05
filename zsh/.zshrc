@@ -16,46 +16,105 @@ if [[ $- == *i* ]]; then
     # Color definitions
     local red="\033[31m" green="\033[32m" yellow="\033[33m" reset="\033[0m"
     
-    # Get existing sessions
-    local sessions=(${(f)"$(tmux list-sessions -F '#{session_name}' 2>/dev/null)"})
-    local session_count=${#sessions}
-    local choice
+    while true; do
+      clear
+      # Get existing sessions
+      local sessions=(${(f)"$(tmux list-sessions -F '#{session_name}' 2>/dev/null)"})
+      local session_count=${#sessions}
+      local choice
 
-    if (( session_count > 0 )); then
-      echo "${green}\nTMUX Sessions:${reset}"
-      tmux list-sessions
-      echo "${yellow}\nPress Enter to attach ${sessions[1]}"
-      echo "Options: [number] | n(new) | q(quit)${reset}"
+      if (( session_count > 0 )); then
+        echo "${green}Available TMUX Sessions:${reset}"
+        tmux list-sessions
+        echo "\n${yellow}Press Enter to attach ${sessions[1]}"
+        echo "Options: [number] | n(new) | q(quit)${reset}"
 
-      read -t 30 "choice?Choice (${sessions[1]}/n/q): "
-      
-      case "$choice" in
-        ""|1) 
-          tmux attach -t "${sessions[1]}" || echo "${red}Attach failed!${reset}" ;;
-        [2-9])
-          if (( choice <= session_count )); then
-            tmux attach -t "${sessions[choice]}" || echo "${red}Invalid session!${reset}"
-          else
-            echo "${red}No session $choice${reset}"
-          fi ;;
-        n|N)
-          read "session_name?Session name (default=main): "
-          session_name="${session_name//[^a-zA-Z0-9_]/_}"
-          tmux new-session -A -s "${session_name:-main}" ;;
-        q|Q) : ;;
-        *) echo "${red}Invalid choice!${reset}" ;;
-      esac
-    else
-      echo "${yellow}No existing sessions${reset}"
-      read "choice?Create new? [Y/n]: "
-      case "$choice" in
-        n|N) : ;;
-        *)
-          read "session_name?Session name (default=main): "
-          session_name="${session_name//[^a-zA-Z0-9_]/_}"
-          tmux new-session -A -s "${session_name:-main}" ;;
-      esac
-    fi
+        # Timeout handling that exits completely
+        if ! read -t 30 "choice?Choice: "; then
+          echo "\n${red}Timeout reached, starting normal terminal session.${reset}"
+          sleep 1
+          clear
+          break  # Exit completely to normal shell
+        fi
+
+        case "$choice" in
+          ""|1)
+            clear
+            if tmux attach -t "${sessions[1]}" 2>/dev/null; then
+              break
+            else
+              echo "${red}Attach failed! Session may have been removed${reset}"
+              sleep 1
+              continue
+            fi
+            ;;
+
+          n|N)
+            clear
+            read "session_name?Session name (default=main): "
+            session_name="${session_name//[^a-zA-Z0-9_]/_}"
+            if tmux new-session -A -s "${session_name:-main}" 2>/dev/null; then
+              break
+            else
+              echo "${red}Failed to create session! Invalid name or server problem${reset}"
+              sleep 1
+              continue
+            fi
+            ;;
+
+          q|Q)
+            clear
+            break 2>/dev/null || exit
+            ;;
+
+          *)
+            if [[ "$choice" =~ ^[0-9]+$ ]]; then
+              if (( choice >= 1 && choice <= session_count )); then
+                clear
+                if tmux attach -t "${sessions[choice]}" 2>/dev/null; then
+                  break
+                else
+                  echo "${red}Attach failed! Session may have been removed${reset}"
+                  sleep 1
+                  continue
+                fi
+              else
+                echo "${red}No session number $choice${reset}"
+                sleep 1
+                continue
+              fi
+            else
+              echo "${red}Invalid choice!${reset}"
+              sleep 1
+              continue
+            fi
+            ;;
+        esac
+
+      else  # No existing sessions
+        echo "${yellow}No existing TMUX sessions found${reset}"
+        read "choice?Create new session? [Y/n]: "
+        case "$choice" in
+          n|N)
+            clear
+            break
+            ;;
+
+          *)
+            clear
+            read "session_name?Session name (default=main): "
+            session_name="${session_name//[^a-zA-Z0-9_]/_}"
+            if tmux new-session -A -s "${session_name:-main}" 2>/dev/null; then
+              break
+            else
+              echo "${red}Failed to create session! Invalid name or server problem${reset}"
+              sleep 1
+              continue
+            fi
+            ;;
+        esac
+      fi
+    done
   fi
 
   # Instant Prompt (Powerlevel10k) - Load extremely early for perceived speed
