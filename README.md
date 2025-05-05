@@ -1,4 +1,4 @@
-My personal dotfiles for Arch Linux + Hyprland.
+# My personal dotfiles for Arch Linux + Hyprland.
 
 **Ricing is personal art.**
 
