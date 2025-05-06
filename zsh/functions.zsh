@@ -16,37 +16,6 @@ ai() {
   esac | mdcat | less -FRX
 }
 
-cleanup() {
-    # Remove orphans with confirmation
-    local orphans=$(pacman -Qdtq)
-    if [[ -n "$orphans" ]]; then
-        echo "Orphaned packages found:"
-        echo "$orphans"
-        read -p "Remove these packages? [y/N] " confirm
-        if [[ $confirm =~ [Yy] ]]; then
-            sudo pacman -Rns $orphans
-        else
-            echo "Skipping orphan removal."
-        fi
-    else
-        echo "No orphaned packages found."
-    fi
-
-    # Keep 2 latest versions of installed packages (safer than -Sc)
-    sudo paccache -rk2
-
-    # Remove all cached versions of uninstalled packages
-    sudo paccache -ruk0
-
-    # AUR cleanup (supports yay/paru, skips if helper isn't installed)
-    aur_helper=$(command -v yay || command -v paru)
-    if [[ -n $aur_helper ]]; then
-        $aur_helper -Sc --noconfirm
-    else
-        echo "No AUR helper (yay/paru) found. Skipping AUR cleanup."
-    fi
-}
-
 # file search
 ff() {
   local file
