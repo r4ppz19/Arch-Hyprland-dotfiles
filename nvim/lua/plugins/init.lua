@@ -65,20 +65,6 @@ return {
   },
 
   {
-    "basola21/PDFview",
-    lazy = false,
-    dependencies = { "nvim-telescope/telescope.nvim" },
-  },
-
-  {
-    'echasnovski/mini.animate',
-    version = false, -- always use the latest version
-    config = function()
-      require('mini.animate').setup()
-    end,
-  },
-
-  {
     "kdheepak/lazygit.nvim",
     lazy = true,
     cmd = {
