@@ -1,3 +1,4 @@
+/* stylelint-disable */
 /* Gruvbox Theme */
 
 @define-color user-bg #282828;
@@ -232,7 +233,8 @@
 .control-center {
   background: @cc-bg;
   color: @text-color;
-  border-radius: 1px; 
+  border-radius: 1px;
+  border: 1px solid @noti-border-color;
 }
 
 .control-center .control-center-list-placeholder {
