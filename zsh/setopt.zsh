@@ -18,4 +18,4 @@ setopt HIST_FCNTL_LOCK  # Safer history file locking
 setopt INTERACTIVE_COMMENTS  # Allow comments in interactive shell
 setopt HIST_NO_STORE     # Don't store history commands
 setopt HIST_REDUCE_BLANKS # Compact whitespace in history
-
+setopt extendedglob

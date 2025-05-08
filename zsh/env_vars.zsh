@@ -16,7 +16,6 @@ export KEYTIMEOUT=1
 export HISTFILE=~/.zsh_history
 export HISTSIZE=50000         # Increased from 10000 for more history retention
 export SAVEHIST=50000         # Should match HISTSIZE
-export HIST_IGNORE_PATTERN='(sudo -S|*\\(\\\\)*|*\\\*|*&*|*`*|*||*|*$(*|*~|*--password*)'
 
 # nnn
 export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'
