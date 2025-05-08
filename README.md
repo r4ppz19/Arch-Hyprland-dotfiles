@@ -1,4 +1,4 @@
-# My personal dotfiles for Arch Linux + Hyprland.
+## My personal dotfiles for Arch Linux + Hyprland.
 
 **Ricing is personal art.**
 
@@ -23,7 +23,7 @@ These files fit *my* workflow and *my* taste. Look through, take ideas, build yo
 * **Bar:** Waybar 
 * **Launcher:** Rofi ([config from](https://github.com/adi1090x/rofi))
 * **File Managers:** Thunar (GUI), Ranger (TUI)
-* **Wallpaper:** [idk](wallpaper/)
+* **Wallpaper:** [here](https://wallhaven.cc/w/vq1z55)
 
 
 ## Screenshots
