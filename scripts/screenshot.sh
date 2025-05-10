@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Note to self:
+# bind this to your liking
+# dependencies: grim & slup & notification-deamon (ex. swaync, dunst), libnotify
+
 # Define the lock file
 LOCKFILE="/tmp/screenshot.lock"
 

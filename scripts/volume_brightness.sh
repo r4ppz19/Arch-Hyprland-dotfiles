@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Note to self:
+# dependencies: brightnessctl, wireplumber, libnotify
+
 case "$1" in
     volume-up)
         wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+

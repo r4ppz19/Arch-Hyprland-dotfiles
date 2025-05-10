@@ -1,7 +1,8 @@
 #!/bin/bash
 
-while true; do
-  notify-send -u critical "💡 Take a Break!" "Rest your eyes for 20 seconds."
-  sleep 1200  # 20 minutes = 1200 seconds
-done
+# Note to self:
+# run this using systemd with a timer
+# see the my systemd folder for reference
+
+notify-send -u critical "💡 Take a Break!" "Rest your eyes for 20 seconds."
 
