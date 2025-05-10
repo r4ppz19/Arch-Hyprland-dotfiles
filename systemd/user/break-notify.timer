@@ -1,0 +1,11 @@
+[Unit]
+Description=Run break notification every 20 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=20min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+

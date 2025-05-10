@@ -1,0 +1,9 @@
+[Unit]
+Description=Break Reminder Notification
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/break_notify.sh
+Environment=DISPLAY=:0
+Environment=XDG_RUNTIME_DIR=/run/user/%U
+

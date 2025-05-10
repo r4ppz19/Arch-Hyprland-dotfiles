@@ -1,0 +1,7 @@
+[Unit]
+Description=Battery warning script
+
+[Service]
+Type=oneshot
+ExecStart=/home/r4ppz/Arch-dotfiles/scripts/battery_warn.sh
+
