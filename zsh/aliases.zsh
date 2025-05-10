@@ -33,7 +33,7 @@ alias search='pacman -Ss && yay -Ss'
 alias pkglist='pacman -Qqe'
 
 # AI
-alias gce='gh copilot explain'
-alias gcs='gh copilot suggest'
+alias explain='gh copilot explain'
+alias suggest='gh copilot suggest'
 alias gemma3="tgpt --provider ollama --model gemma3"
 alias poll="tgpt --provider pollinations"

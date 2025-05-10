@@ -2,49 +2,12 @@
 # functions
 # =========================================================================================
 
+# filter history
 HISTORY_IGNORE='(sudo -S*|*--password*|*\$\(*|*\"*|*"*)'
 zshaddhistory() {
   emulate -L zsh
   [[ $1 != ${~HISTORY_IGNORE}[[:space:]]## ]]
 }
-
-# package management
-install() {
-  if command -v pacman >/dev/null 2>&1; then
-    sudo pacman -S "$@"
-  elif command -v yay >/dev/null 2>&1; then
-    yay -S "$@"
-  else
-    echo "Neither pacman nor yay is available."
-    return 1
-  fi
-}
-
-uninstall() {
-  if command -v pacman >/dev/null 2>&1; then
-    sudo pacman -Rns "$@"
-  elif command -v yay >/dev/null 2>&1; then
-    yay -Rns "$@"
-  else
-    echo "Neither pacman nor yay is available."
-    return 1
-  fi
-}
-
-update() {
-  echo "Updating system..."
-  if command -v pacman >/dev/null 2>&1; then
-    echo "Using pacman..."
-    sudo pacman -Syu
-  elif command -v yay >/dev/null 2>&1; then
-    echo "Using yay..."
-    yay -Syu
-  else
-    echo "Neither pacman nor yay is available."
-    return 1
-  fi
-}
-
 
 # tgpt with different parameter
 ai() {
